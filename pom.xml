@@ -26,6 +26,8 @@
   <name>code</name>
   <modules>
     <module>netty</module>
+      <module>thread</module>
+    <module>model</module>
   </modules>
   <groupId>com.chengsy.code</groupId>
   <artifactId>code</artifactId>
