@@ -9,19 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>code-netty</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>service</module>
-        <module>client</module>
-    </modules>
-    <dependencies>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.0.18.Final</version>
-        </dependency>
-    </dependencies>
+    <artifactId>code-algorithm</artifactId>
 
 
 </project>

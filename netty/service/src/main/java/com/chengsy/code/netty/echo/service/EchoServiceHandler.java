@@ -5,7 +5,7 @@
  * You shall not disclose such Confidential Information and shall use it only 
  * in accordance with the terms of the license agreement you entered into with GuaHao.com.
  */
-package com.chengsy.code.netty.echo;
+package com.chengsy.code.netty.echo.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

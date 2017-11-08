@@ -28,6 +28,7 @@
     <module>netty</module>
     <module>thread</module>
     <module>model</module>
+    <module>algorithm</module>
   </modules>
   <groupId>com.chengsy.code</groupId>
   <artifactId>code</artifactId>
@@ -68,6 +69,11 @@
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
       <version>1.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.8</version>
     </dependency>
   </dependencies>
 

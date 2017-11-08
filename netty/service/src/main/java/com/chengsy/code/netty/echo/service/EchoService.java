@@ -5,7 +5,7 @@
  * You shall not disclose such Confidential Information and shall use it only 
  * in accordance with the terms of the license agreement you entered into with GuaHao.com.
  */
-package com.chengsy.code.netty.echo;
+package com.chengsy.code.netty.echo.service;
 
 import java.net.InetSocketAddress;
 
@@ -21,8 +21,6 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
- * TODO
- *
  * @author chengsy
  * @version V1.0
  * @since 2017-11-03 09:26
@@ -41,11 +39,7 @@ public class EchoService {
     }
 
     public static void main(String[] args) throws Exception {
-        if (args.length != 1) {
-            LOGGER.error("Usage:" + EchoService.class.getSimpleName() + "<port>");
-            return;
-        }
-        int port = Integer.parseInt(args[0]);
+        int port = 8081;
         new EchoService(port).start();
     }
 
