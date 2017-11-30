@@ -36,7 +36,7 @@ public class HailConjectureTest {
      *
      * @throws Exception
      */
-        @Test
+    @Test
     public void testHailConjectureUnderMillion() throws Exception {
         hailConjecture.hailConjecture(1000000);
     }

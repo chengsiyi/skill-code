@@ -61,6 +61,18 @@ public class HailConjecture {
         return hailConjecture(tempNum, count, max);
     }
 
+    /**
+     * 倒序查找，
+     * 273125/1000000 4533ms
+     * 27312/100000 577ms
+     * 2725/10000 79ms
+     * 正序查找，
+     * 4328/10000 72ms
+     * 43268/100000 572ms
+     * 432365/1000000 5865ms
+     *
+     * @param limitNum
+     */
     public void hailConjecture(long limitNum) {
         long begin = System.currentTimeMillis();
         int i = 0;
@@ -86,7 +98,7 @@ public class HailConjecture {
         }
         long find = System.currentTimeMillis();
         System.out
-            .println(String.format("运算过程中，计算步数耗时:%dms,找到变换次数最多的数字耗时:%dms", calculation - begin, find - calculation));
+                .println(String.format("运算过程中，计算步数耗时:%dms,找到变换次数最多的数字耗时:%dms", calculation - begin, find - calculation));
         System.out.println(String.format("%d范围内,变换步数最多的数字是%d,一共变换了%d步", limitNum, targetNum, chainNum));
     }
 
