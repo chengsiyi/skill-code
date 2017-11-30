@@ -28,17 +28,16 @@ public class HailConjectureTest {
 
     @Test
     public void testHailConjecture() throws Exception {
-        hailConjecture.hailConjecture(29,0, 1);
+        hailConjecture.hailConjecture(77031, 0, 1);
     }
 
     /**
      * 获取100W以内 变换次数最多的数字
+     *
      * @throws Exception
      */
-    //    @Test
+        @Test
     public void testHailConjectureUnderMillion() throws Exception {
-        for (int a = 1; a < 1000000; a ++){
-            hailConjecture.hailConjecture(a, 0, 1);
-        }
+        hailConjecture.hailConjecture(1000000);
     }
 }
