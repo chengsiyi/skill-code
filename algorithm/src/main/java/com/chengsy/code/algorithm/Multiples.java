@@ -2,6 +2,8 @@ package com.chengsy.code.algorithm;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author chengsy
@@ -54,20 +56,28 @@ public class Multiples {
      *
      * @param limitNum 目标数
      */
-    public void findLargestPrime(long limitNum) {
-        System.out.print(limitNum + "=");
+    public Map<Integer, Integer> decompositionPrime(long limitNum) {
+        Map<Integer, Integer> primeMap = new ConcurrentHashMap<Integer, Integer>(50);
         long temNum = (long) Math.ceil(Math.sqrt(limitNum));
         for (int i = 2; i <= temNum; i++) {
             while (limitNum % i == 0 && limitNum != i) {
+                if (primeMap.containsKey(i)) {
+                    primeMap.put(i, primeMap.get(i) + 1);
+                } else {
+                    primeMap.put(i, 1);
+                }
                 limitNum = limitNum / i;
-                System.out.print(i + "*");
             }
             if (limitNum == i) {
-                System.out.println(i);
+                if (primeMap.containsKey(i)) {
+                    primeMap.put(i, primeMap.get(i) + 1);
+                } else {
+                    primeMap.put(i, 1);
+                }
                 break;
-
             }
         }
+        return primeMap;
     }
 
     /**
@@ -113,5 +123,55 @@ public class Multiples {
             }
         }
         return flag;
+    }
+
+    /**
+     * https://projecteuler.net/problem=5
+     * 找出能被指定范围内数字整除的最小自然数
+     */
+    public void smallestMultiple(int limit) {
+        boolean flag = true;
+        Map<Integer, Integer> primeMap = new ConcurrentHashMap<Integer, Integer>(limit);
+        Map<Integer, Integer> compositeMap;
+        // 将给定范围内的数字区分开来
+        for (int i = 2; i <= limit; i++) {
+            flag = isPrime(i);
+            if (flag) {
+                primeMap.put(i, 1);
+            } else {
+                // 分解质因数
+                compositeMap = decompositionPrime(i);
+                for (Map.Entry<Integer, Integer> result : compositeMap.entrySet()) {
+                    // 分解出来的质因数根据权重重新赋值
+                    if (primeMap.containsKey(result.getKey())) {
+                        if (primeMap.get(result.getKey()) < result.getValue()) {
+                            primeMap.put(result.getKey(), result.getValue());
+                        }
+                    } else {
+                        primeMap.put(result.getKey(), result.getValue());
+                    }
+                }
+            }
+        }
+        int num = 1;
+        for (Map.Entry<Integer, Integer> result : primeMap.entrySet()) {
+            num = num * (int) Math.pow(result.getKey(), result.getValue());
+        }
+        System.out.println(num);
+    }
+
+    /**
+     * 判断是不是质数
+     *
+     * @param num
+     * @return
+     */
+    private boolean isPrime(int num) {
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

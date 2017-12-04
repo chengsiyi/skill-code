@@ -19,11 +19,16 @@ public class MultiplesTest {
 
     @Test
     public void testFindLargestPrime() throws Exception {
-        multiples.findLargestPrime(13195);
+        System.out.println(multiples.decompositionPrime(13195));
     }
 
     @Test
     public void testFindPalindrome() throws Exception {
         multiples.findPalindrome(3);
+    }
+
+    @Test
+    public void testSmallestMultiple() throws  Exception {
+        multiples.smallestMultiple(20);
     }
 }
