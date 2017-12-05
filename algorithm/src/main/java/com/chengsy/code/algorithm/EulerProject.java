@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * @author chengsy
  */
-public class Multiples {
+public class EulerProject {
 
     /**
      * 找出1000以内3或5倍数的数字的和
