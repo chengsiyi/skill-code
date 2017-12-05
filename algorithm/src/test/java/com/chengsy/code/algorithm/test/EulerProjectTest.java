@@ -1,11 +1,11 @@
 package com.chengsy.code.algorithm.test;
 
-import com.chengsy.code.algorithm.Multiples;
+import com.chengsy.code.algorithm.EulerProject;
 
 import org.testng.annotations.Test;
 
-public class MultiplesTest {
-    private Multiples multiples = new Multiples();
+public class EulerProjectTest {
+    private EulerProject multiples = new EulerProject();
 
     @Test
     public void testSumMultiples() throws Exception {
