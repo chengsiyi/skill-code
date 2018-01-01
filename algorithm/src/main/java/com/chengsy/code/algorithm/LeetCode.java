@@ -33,5 +33,6 @@ public class LeetCode {
     public List<List<Integer>> threeSum(int[] nums) {
         for (Integer i: nums) {
         }
+        return null;
     }
 }
