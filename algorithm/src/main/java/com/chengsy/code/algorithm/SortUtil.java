@@ -1,5 +1,7 @@
 package com.chengsy.code.algorithm;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.Arrays;
 
 public class SortUtil {
@@ -30,10 +32,27 @@ public class SortUtil {
                     nums[j - 1] = temp;
                     flag = true;
                 }
+                System.out.println(JSON.toJSONString(nums));
+
             }
         }
         System.out.println(String.format("排序循环次数:%d", count));
         return nums;
+    }
+
+
+    public static int[] firstBubble(int[] a){
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 1; j < a.length; j++){
+                if (a[j] >= a[j -1]){
+                    int temp = a[j];
+                    a[j] = a[j-1];
+                    a[j-1] = temp;
+                    System.out.println(JSON.toJSONString(a));
+                }
+            }
+        }
+        return a;
     }
 
     /**
@@ -66,7 +85,9 @@ public class SortUtil {
      * @return
      */
     private static int partition(int[] nums, int low, int higt) {
+        System.out.println("pre:" + Arrays.toString(nums));
         int pivot = nums[higt];
+        System.out.println("pivot:" + pivot);
         int i = low - 1;
         int temp;
         for (int j = low; j < higt; j++) {
@@ -81,7 +102,33 @@ public class SortUtil {
         temp = nums[i + 1];
         nums[i + 1] = pivot;
         nums[higt] = temp;
-        System.out.println(Arrays.toString(nums));
+        System.out.println("after:" + Arrays.toString(nums));
         return i + 1;
+    }
+
+    /**
+     * Aha 算法 - QQ解密
+     *
+     * @param encryptData 加密的数字
+     * @return
+     */
+    public static void decryptQQ(int[] encryptData) {
+        int head = 1;
+        int tail = 10;
+        while (head < tail) {
+            System.out.println(encryptData[head]);
+            head++;
+            encryptData[tail] = encryptData[head];
+            tail++;
+            head++;
+        }
+    }
+
+
+    public static void main(String[] args) {
+        int[] a = new int[]{2,2,16,8,1,3,7678,32};
+//        firstBubble(a);
+        bubbleSort(a);
+        System.out.println(JSON.toJSONString(a));
     }
 }
