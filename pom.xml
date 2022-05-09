@@ -30,6 +30,8 @@
     <module>design-pattern</module>
     <module>tools</module>
     <module>code-netty</module>
+    <module>code-mq</module>
+    <module>code-asm</module>
   </modules>
   <groupId>com.chengsy.code</groupId>
   <artifactId>code</artifactId>
@@ -72,12 +74,12 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.1.2</version>
+      <version>1.2.0</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
-      <version>1.1.2</version>
+      <version>1.2.0</version>
     </dependency>
     <dependency>
       <groupId>org.testng</groupId>

@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 public class LeetCode {
     public static final Logger logger = LoggerFactory.getLogger(LeetCode.class);
@@ -118,6 +120,145 @@ public class LeetCode {
             return getKth(num1, start1, num2, start2 + k / 2, k - k / 2);
         }
         return getKth(num1, start1 + k / 2, num2, start2, k - k / 2);
+
+    }
+
+
+    public String longestPalindrome(String s) {
+        String res = "";
+        for (int i = 0; i < s.length(); i++) {
+            String s1 = palindrome(s, i, i);
+            String s2 = palindrome(s, i, i + 1);
+            res = res.length() > s1.length() ? res : s1;
+            res = res.length() > s2.length() ? res : s2;
+        }
+        return res;
+    }
+
+    private String palindrome(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return s.substring(left + 1, right);
+    }
+
+    /**
+     * 深度优先
+     *
+     * @param treeNode
+     * @return
+     */
+    public Integer minDeep(TreeNode<Integer> treeNode) {
+        if (treeNode == null) {
+            return 0;
+        }
+        if (treeNode.left == null && treeNode.right == null) {
+            return 1;
+        }
+        int min = Integer.MAX_VALUE;
+
+        if (treeNode.left != null) {
+            Integer integer = minDeep(treeNode.left);
+            min = Math.min(integer, min);
+        }
+        if (treeNode.right != null) {
+            Integer integer = minDeep(treeNode.right);
+            min = Math.min(integer, min);
+        }
+        return min + 1;
+    }
+
+    public Integer minDeep2(TreeNode<Integer> treeNode) {
+        if (treeNode == null) {
+            return 0;
+        }
+        if (treeNode.left == null && treeNode.right == null) {
+            return 1;
+        }
+        treeNode.deep = 1;
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
+        queue.offer(treeNode);
+        while (!queue.isEmpty()) {
+            TreeNode<Integer> peek = queue.poll();
+            if (peek.left == null && peek.right == null) {
+                return peek.deep;
+            }
+            if (peek.left != null) {
+                peek.left.deep = peek.deep + 1;
+                queue.offer(peek.left);
+            }
+            if (peek.right != null) {
+                peek.right.deep = peek.deep + 1;
+                queue.offer(peek.right);
+            }
+        }
+        return 0;
+
+    }
+
+    public int maxArea(int[] height) {
+        int start = 0;
+        int end = height.length - 1;
+        int area = Integer.MIN_VALUE;
+        while (start != end) {
+            area = Math.max(area, Math.min(height[start], height[end]) * (end - start));
+            if (height[start] >= height[end]) {
+                end--;
+            } else {
+                start++;
+            }
+        }
+        return area;
+    }
+
+    public boolean lemonadeChange(int[] bills) {
+        int five = 0;
+        int ten = 0;
+
+        for (int bill : bills) {
+            if (bill == 5) {
+                five++;
+            } else if (bill == 10) {
+                if (five <= 0) {
+                    return false;
+                }
+                ten++;
+                five--;
+            } else {
+                if (five > 0 && ten > 0) {
+                    five--;
+                    ten--;
+                } else if (five >= 3) {
+                    five -= 3;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public int trap(int[] height) {
+        int start = 0;
+        int end = height.length - 1;
+        int lmax = 0;
+        int rmax = 0;
+        int res = 0;
+
+        while (start < end) {
+            lmax = Math.max(lmax, height[start]);
+            rmax = Math.max(rmax, height[end]);
+            if (lmax < rmax) {
+                start++;
+                res += lmax - height[start];
+            } else {
+                end--;
+                res += rmax - height[end];
+
+            }
+        }
+        return res;
 
     }
 

@@ -18,24 +18,24 @@ public class DynamicProgramming {
     public static Pair<Integer, Integer> min(int firstIndex, int secondIndex) {
 
         if (firstIndex < 0 || secondIndex < 0) {
-            return new Pair<Integer, Integer>(0, 0);
+            return new Pair<>(0, 0);
         }
         if (firstIndex == 0 && secondIndex > 0) {
-            return new Pair<Integer, Integer>(firstIndex, secondIndex - 1);
+            return new Pair<>(firstIndex, secondIndex - 1);
         } else if (secondIndex == 0 && firstIndex > 0) {
-            return new Pair<Integer, Integer>(firstIndex - 1, secondIndex);
+            return new Pair<>(firstIndex - 1, secondIndex);
 
         } else if (firstIndex == 0 && secondIndex == 0) {
-            return new Pair<Integer, Integer>(firstIndex, secondIndex);
+            return new Pair<>(firstIndex, secondIndex);
         }
 
         int right = array[firstIndex][secondIndex - 1];
         int up = array[firstIndex - 1][secondIndex];
 
         if (right > up) {
-            return new Pair<Integer, Integer>(firstIndex - 1, secondIndex);
+            return new Pair<>(firstIndex - 1, secondIndex);
         } else {
-            return new Pair<Integer, Integer>(firstIndex, secondIndex - 1);
+            return new Pair<>(firstIndex, secondIndex - 1);
         }
     }
 
