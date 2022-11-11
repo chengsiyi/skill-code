@@ -68,11 +68,9 @@ public class Price {
             JSONArray rooms = simple.getJSONArray("rooms");
 
             for (int j = 0; j < rooms.size(); j++) {
-                JSONObject room = array.getJSONObject(i);
+                JSONObject room = rooms.getJSONObject(i);
                 BuildingDetailBean bean = room.toJavaObject(BuildingDetailBean.class);
                 bean.setBuildingName(buildingName);
-                room.getString("x")
-                bean.setRoomName(name + );
             }
 //            toJavaList(BuildingDetailBean.class);
 //            rooms.forEach(f -> f.setUnit(name));
@@ -85,9 +83,9 @@ public class Price {
     public static void main(String[] args) {
         List<BuildingInfoBean> buildingList = getBuildingList();
         for (BuildingInfoBean buildingInfo : buildingList) {
-            List<BuildingDetailBean> single = getBuildingInfo(buildingInfo.getBuildingId());
+            List<BuildingDetailBean> single = getBuildingInfo(buildingInfo.getBuildingId(),buildingInfo.getBlockName());
             logger.info("楼栋:{}, 信息:{}", buildingInfo.getBlockName(), JSON.toJSONString(single));
-            ExcelWriter writer = EasyExcel.read()
+//            ExcelWriter writer = EasyExcel.read();
         }
     }
 }

@@ -97,17 +97,17 @@ public class HttpUtil {
      * @param params 参数map
      * @return
      */
-//    public static String doPostSSLWithHead(HttpPost httpPost, Map<String, Object> params) {
-//        logger.info("发送post请求，请求url={},请求参数为{}.", httpPost.getURI(), JSONObject.toJSONString(params));
-//        httpPost.setConfig(requestConfig);
-//        List<NameValuePair> pairList = new ArrayList<>(params.size());
-//        for (Map.Entry<String, Object> entry : params.entrySet()) {
-//            NameValuePair pair = new BasicNameValuePair(entry.getKey(), entry.getValue().toString());
-//            pairList.add(pair);
-//        }
-//        httpPost.setEntity(new UrlEncodedFormEntity(pairList, Charset.forName(CHARACTER_ENCODE)));
-//        return sendPost(httpPost);
-//    }
+    public static String doPostSSLWithHead(HttpPost httpPost, Map<String, Object> params) {
+        logger.info("发送post请求，请求url={},请求参数为{}.", httpPost.getURI(), JSONObject.toJSONString(params));
+        httpPost.setConfig(requestConfig);
+        List<NameValuePair> pairList = new ArrayList<>(params.size());
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            NameValuePair pair = new BasicNameValuePair(entry.getKey(), entry.getValue().toString());
+            pairList.add(pair);
+        }
+        httpPost.setEntity(new UrlEncodedFormEntity(pairList, Charset.forName(CHARACTER_ENCODE)));
+        return sendPost(httpPost);
+    }
 
 
     public static String doPostSSL(String url, String json) {
@@ -160,10 +160,9 @@ public class HttpUtil {
         return resp;
     }
 
-    public static String sendGet(String url) {
-        logger.info("发送get请求，请求url={}.", url);
+    public static String sendGet(HttpGet httpGet){
+        logger.info("发送get请求，请求url={}.", httpGet.getURI());
         CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory()).setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig).build();
-        HttpGet httpGet = new HttpGet(url);
         httpGet.setConfig(requestConfig);
         String httpStr = "";
         try (CloseableHttpResponse resp = httpClient.execute(httpGet)) {
@@ -182,6 +181,14 @@ public class HttpUtil {
         }
         logger.info("get请求结果为:{}.", httpStr);
         return httpStr;
+    }
+
+
+
+    public static String sendGet(String url) {
+        HttpGet httpGet = new HttpGet(url);
+        httpGet.setConfig(requestConfig);
+        return sendGet(httpGet);
     }
 
     public static String sendGet(String firstUrl, String redirectUrl) {

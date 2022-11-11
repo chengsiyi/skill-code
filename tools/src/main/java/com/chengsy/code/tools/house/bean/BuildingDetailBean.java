@@ -58,8 +58,13 @@ public class BuildingDetailBean {
      * 建面价格
      */
     @ExcelProperty("建面价格")
-
     private Double nsjmjg;
+
+    /**
+     * 建面价格
+     */
+    @ExcelProperty("位置")
+    private String location;
 
     public String getBuildingName() {
         return buildingName;
@@ -132,5 +137,13 @@ public class BuildingDetailBean {
 
     public void setNsjmjg(Double nsjmjg) {
         this.nsjmjg = nsjmjg;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
